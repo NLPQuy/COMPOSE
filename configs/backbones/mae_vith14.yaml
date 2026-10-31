@@ -1,0 +1,4 @@
+# MAE ViT-H/14, last block (Table 25 "L31"). Pass mae_pretrain_vit_huge.pth with --source-checkpoint.
+name: mae_vith14
+model: vit_huge_patch14_224_mae
+dinosaur: b14

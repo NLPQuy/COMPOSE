@@ -1,0 +1,18 @@
+# Train x inference cross-ablation (Tables 22 and 24). The training rows differ only in
+# the weight of the holistic logits in the loss (1.0 = COMPOSE, 0.0 = Chamfer only);
+# gamma is applied at test time to the same router.
+name: cross_ablation
+datasets: [cgqa, cobj]
+seeds: [42, 123, 7]
+eval: {shots: [10]}
+variants:            # shared by every run below
+  - {name: gamma0.0, gamma: 0.0}
+  - {name: gamma0.3, gamma: 0.3}
+  - {name: gamma0.7, gamma: 0.7}
+  - {name: gamma1.0, gamma: 1.0}
+runs:
+  - {name: COMPOSE}
+  - {name: CT-w0.7,      train: {router: compose_ct, holistic_weight: 0.7}}
+  - {name: CT-w0.5,      train: {router: compose_ct, holistic_weight: 0.5}}
+  - {name: COMPOSE-CT,   train: {router: compose_ct, holistic_weight: 0.3}}
+  - {name: Chamfer-only, train: {router: compose_ct, holistic_weight: 0.0}}

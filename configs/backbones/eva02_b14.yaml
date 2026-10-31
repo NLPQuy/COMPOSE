@@ -1,0 +1,5 @@
+# EVA-02 ViT-B/14 (MIM, IN-22K). Inputs re-normalised to EVA-02's own mean/std.
+name: eva02_b14
+model: eva02_base_patch14_224.mim_in22k
+dinosaur: b14
+renorm: true

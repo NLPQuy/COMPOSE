@@ -1,0 +1,16 @@
+# Training-side ablations of Table 3 / Table 9 and the lambda_d sweep (Table 17).
+# lambda_d = 0.02 is the COMPOSE run of main.yaml.
+name: ablation
+datasets: [cgqa, cobj]
+seeds: [42, 123, 7]
+eval: {shots: [10]}
+runs:
+  - name: GRU-router          # BiGRU slot scorer instead of the MLP router
+    train: {router: bigru}
+  - name: GRU-state           # DINOSAUR slot-attention state instead of phi_tilde
+    train: {slot_source: gru_state}
+  - {name: lambda_d0,     train: {lambda_d: 0.0}}
+  - {name: lambda_d0.005, train: {lambda_d: 0.005}}
+  - {name: lambda_d0.01,  train: {lambda_d: 0.01}}
+  - {name: lambda_d0.05,  train: {lambda_d: 0.05}}
+  - {name: lambda_d0.1,   train: {lambda_d: 0.1}}

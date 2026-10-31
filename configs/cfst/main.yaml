@@ -1,0 +1,18 @@
+# Tables 1 and 4 (main CFST results, CGQA and COBJ), the inference ablations of Table 3 / Table 9,
+# shot sensitivity (Table 19) and the matcher comparison (Table 20).
+# Each run trains one router per (dataset, seed); every variant reads that same router.
+name: main
+datasets: [cgqa, cobj]
+seeds: [42, 123, 7]
+eval: {shots: [1, 5, 10, 20]}
+runs:
+  - name: COMPOSE
+    variants:
+      - {name: COMPOSE, gamma: 0.3}
+      - {name: w/o Chamfer, gamma: 1.0}
+      - {name: w/o holistic, gamma: 0.0}
+      - {name: w/o centering, gamma: 0.3, center: false}
+      - {name: mean-pool, gamma: 0.3, pool: mean}
+      - {name: COMPOSE-Hungarian, gamma: 0.3, matcher: hungarian}
+  - name: COMPOSE-CT          # Chamfer in the training loss (ablation)
+    train: {router: compose_ct, holistic_weight: 0.3}

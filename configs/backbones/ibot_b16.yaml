@@ -1,0 +1,4 @@
+# iBOT ViT-B/16 (IN-1K). Pass the iBOT teacher weights with --source-checkpoint (ibot_vitb16.pth).
+name: ibot_b16
+model: vit_base_patch16_224
+dinosaur: b16

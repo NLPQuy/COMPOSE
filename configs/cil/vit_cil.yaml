@@ -1,0 +1,13 @@
+# Table 11: COMPOSE on standard class-incremental benchmarks (CIFAR-100, ImageNet-R, ImageNet-A).
+# The DINOv2 backbone is first adapted on the base session with AdaptFormer adapters, as for every
+# method in the table (LAMDA-PILOT RanPAC recipe), then frozen. The router hyperparameters are those
+# of the CFST experiments.
+name: vit_cil
+datasets: [cifar224, imagenetr, imageneta]
+seeds: [42]
+base_session: {epochs: 20, lr: 0.01, momentum: 0.9, weight_decay: 0.0005, batch_size: 48, ffn_num: 64}
+cil: {episodes_base: 1000, episodes_per_session: 200, lr: 0.001, n_way: 10, n_support: 5, n_query: 10,
+      exemplars_per_class: 20, gamma: 0.3, kappa: 4}
+runs:
+  - {name: COMPOSE}
+  - {name: COMPOSE-CT, train: {router: compose_ct, holistic_weight: 0.3}}

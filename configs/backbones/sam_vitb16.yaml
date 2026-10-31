@@ -1,0 +1,8 @@
+# SAM ViT-B/16 image encoder at 1024, last block before the neck (Table 25 "L11"); the 14x14
+# DINOSAUR attention is upsampled to the 64x64 token grid. Pass sam_vit_b_01ec64.pth.
+name: sam_vitb16
+model: samvit_base_patch16
+kind: sam
+dinosaur: b16
+input_size: 1024
+layer: 11

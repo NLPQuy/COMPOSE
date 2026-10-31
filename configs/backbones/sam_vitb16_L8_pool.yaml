@@ -1,0 +1,8 @@
+# SAM ViT-B/16 at 1024, block 8 before the neck, tokens average-pooled to the 14x14 attention grid.
+name: sam_vitb16_L8_pool
+model: samvit_base_patch16
+kind: sam
+dinosaur: b16
+input_size: 1024
+layer: 8
+pool_to: [14, 14]

@@ -1,0 +1,5 @@
+# MAE ViT-H/14 read at block 15, without the final norm (Table 25 "L15").
+name: mae_vith14_L15
+model: vit_huge_patch14_224_mae
+dinosaur: b14
+layer: 15

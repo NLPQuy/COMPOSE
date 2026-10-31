@@ -1,0 +1,9 @@
+# Table 10: few-shot class-incremental learning (CIFAR-100, CUB-200, miniImageNet), CEC splits.
+# Backbone and slot attention frozen; the router is meta-trained on the base session only.
+name: fscil
+datasets: [cifar100, cub200, mini_imagenet]
+seeds: [42, 123, 7]
+meta: {episodes_base: 1000, lr: 0.001, n_way: 10, n_support: 5, n_query: 10, gamma: 0.3, kappa: 4}
+runs:
+  - {name: COMPOSE}
+  - {name: COMPOSE-CT, train: {router: compose_ct, holistic_weight: 0.3}}

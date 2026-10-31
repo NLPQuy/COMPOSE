@@ -1,0 +1,4 @@
+# OpenCLIP ViT-L/14 (LAION-2B). Tokens after the final norm; DINOv2 DINOSAUR attention (256 patches).
+name: openclip_l14
+model: vit_large_patch14_clip_224.laion2b
+dinosaur: b14

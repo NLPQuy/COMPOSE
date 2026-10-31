@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compose-cfst"
+version = "1.0.0"
+description = "COMPOSE: Unlocking Compositional Generalization in Continual Few-Shot Learning (NeurIPS 2026)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0",
+    "numpy",
+    "scipy",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+# Only needed to extract slots from images (scripts/extract_slots.py).
+extract = ["timm>=0.9.16", "torchvision", "pillow", "tqdm"]
+# miniImageNet for the FSCIL benchmark is read from Hugging Face.
+fscil = ["datasets"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["compose*"]

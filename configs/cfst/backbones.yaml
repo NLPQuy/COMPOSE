@@ -1,0 +1,20 @@
+# Other patch sources: Tables 2, 7, 8 and 23 (COMPOSE and COMPOSE-CT per backbone) and Table 25
+# (patch source and read depth). Each run reads the slot store extracted with that patch source
+# (scripts/extract_slots.py --patch-source configs/backbones/<slots>.yaml). The DINOv2 rows are main.yaml.
+name: backbones
+datasets: [cgqa, cobj]
+seeds: [42, 123, 7]
+eval: {shots: [10]}
+runs:
+  - {name: DINOv1-COMPOSE,     slots: dinov1_b16}
+  - {name: DINOv1-COMPOSE-CT,  slots: dinov1_b16,   train: {router: compose_ct, holistic_weight: 0.3}}
+  - {name: iBOT-COMPOSE,       slots: ibot_b16}
+  - {name: iBOT-COMPOSE-CT,    slots: ibot_b16,     train: {router: compose_ct, holistic_weight: 0.3}}
+  - {name: OpenCLIP-COMPOSE,   slots: openclip_l14}
+  - {name: OpenCLIP-COMPOSE-CT, slots: openclip_l14, train: {router: compose_ct, holistic_weight: 0.3}}
+  # Table 25. MAE runs use a wider router for the 1280-d tokens.
+  - {name: MAE-L31,      slots: mae_vith14,         train: {hidden_dim: 128, lambda_d: 0.03}}
+  - {name: MAE-L15,      slots: mae_vith14_L15,     train: {hidden_dim: 128, lambda_d: 0.03}}
+  - {name: SAM-L11,      slots: sam_vitb16}
+  - {name: SAM-L8-pool,  slots: sam_vitb16_L8_pool}
+  - {name: EVA02,        slots: eva02_b14}

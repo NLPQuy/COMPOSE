@@ -1,0 +1,7 @@
+name: compose
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - -e .[extract,dev]

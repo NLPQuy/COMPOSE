@@ -1,0 +1,4 @@
+# DINOv1 ViT-B/16 (IN-1K). Tokens after the final norm; attention from a DINOSAUR on DINOv1 ViT-B/16.
+name: dinov1_b16
+model: vit_base_patch16_224.dino
+dinosaur: b16
