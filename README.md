@@ -15,8 +15,8 @@
 
 COMPOSE reads one frozen set of object slots in two ways. During training the slots are scored
 **as a whole** against class identity, which keeps the object-level geometry of a self-supervised
-ViT intact. At test time the same slots are matched **part by part**, so scenes built from known
-objects in new combinations can be recognised without any gradient step.
+ViT intact. At test time the same slots are matched **part by part**, so concepts never seen in
+training can be recognised from a few examples, without any gradient step.
 
 - **Phase I (trained).** A frozen ViT with DINOSAUR slot attention turns each image into K slots.
   A small MLP router weights the slots and a shared projection maps them to an image embedding. Only
@@ -39,7 +39,7 @@ untouched. COMPOSE therefore trains holistically and composes only at inference.
 ## Main results
 
 CFST benchmark, 10-way 10-shot, mean over 3 seeds (42, 123, 7) with 95% intervals (Table 4 of the
-paper). `noc` tests known objects in new combinations; `H_a` is the harmonic mean over all splits.
+paper). `noc` tests concepts never seen in training; `H_a` is the harmonic mean over all splits.
 
 | | sys | pro | sub | non | noc | H_a |
 |---|---|---|---|---|---|---|
@@ -50,7 +50,7 @@ paper). `noc` tests known objects in new combinations; `H_a` is the harmonic mea
 
 <p align="center">
   <img src="assets/example.png" width="92%" alt="Phase II on a real COBJ query">
-  <br><em>Phase II on a COBJ query (Dog + Frisbee, a combination never seen in training): the slots
+  <br><em>Phase II on a COBJ query (Dog + Frisbee, neither object appears in training): the slots
   with the largest router weights are matched to support slots, and the part score is blended with
   the holistic score.</em>
 </p>
